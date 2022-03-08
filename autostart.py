@@ -1,5 +1,3 @@
-from array import array
-from xmlrpc.client import Boolean
 import pyautogui,cv2,os,time,sys
 import numpy as np
 
@@ -22,7 +20,7 @@ def locate(imageName):
 def click(imageName,offset=np.array([0,0])):
     imageName=filename(imageName)
     center=locate(imageName)
-    if type(center)==Boolean and center==False:
+    if type(center)==bool and center==False:
         raise ValueError("Can't locate the image on screen")
     print("click",imageName)
     center=center+offset
@@ -35,7 +33,7 @@ def main():
     os.startfile(r"C:\Program Files (x86)\Tencent\WeMeet\wemeetapp.exe")
     time.sleep(10)
     locate_res=locate(filename('recover.png'))
-    if type(locate_res)!=Boolean:#locate!=False
+    if type(locate_res)!=bool:#locate!=False
         #exist, recover
         click('recover.png')
     else:
