@@ -27,7 +27,7 @@ def click(imageName,offset=np.array([0,0])):
     pyautogui.click(center[0],center[1])
 
 def filename(name):
-    return os.path.join(r'D:\boot\tencent_meeting',name)
+    return os.path.join(os.path.dirname(sys.argv[0]),name)
     
 def main():
     os.startfile(r"C:\Program Files (x86)\Tencent\WeMeet\wemeetapp.exe")
