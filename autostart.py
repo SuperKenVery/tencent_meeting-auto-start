@@ -25,8 +25,7 @@ def waitAndLocate(imageName,interval=0.3):
 
 
 def click(imageName,offset=np.array([0,0])):
-    imageName=filename(imageName)
-    center=locate(imageName)
+    center=waitAndLocate(imageName)
     if type(center)==bool and center==False:
         raise ValueError("Can't locate the image on screen")
     print("click",imageName)
@@ -46,16 +45,13 @@ def main():
         click('recover.png')
     else:
         click('quick_meeting.png')
-    time.sleep(6)
     click('open_camera.png')
-    time.sleep(1)
     click('share_screen.png')
-    time.sleep(0.5)
     click('share_sound.png')
-    time.sleep(3.5)
     click('confirm_sharing.png')
-    time.sleep(3)
     click('caption_bar.png',np.array([66,0]))
+    click('talking.png')
+    click('hide.png')
 
 if __name__=='__main__':
     main()
