@@ -5,7 +5,7 @@ def locate(imageName):
     screenshot_filename='screenshot.png'
     pyautogui.screenshot(screenshot_filename)
     screenshot=cv2.imread(screenshot_filename)
-    template=cv2.imread(imageName)
+    template=cv2.imread(filename(imageName))
     screenshot_gray=cv2.cvtColor(screenshot,cv2.COLOR_BGR2GRAY)
     template_gray=cv2.cvtColor(template,cv2.COLOR_BGR2GRAY)
     match_result=cv2.matchTemplate(screenshot_gray,template_gray,cv2.TM_CCOEFF_NORMED)
@@ -15,6 +15,13 @@ def locate(imageName):
     (left,top)=maxLoc
     center=np.array([left,top])+np.array([template.shape[1],template.shape[0]])/2
     return center
+
+def waitAndLocate(imageName,interval=0.3):
+    result=locate(imageName)
+    while type(result)==bool and result==False:
+        time.sleep(interval)
+        result=locate(imageName)
+    return result
 
 
 def click(imageName,offset=np.array([0,0])):
@@ -31,9 +38,10 @@ def filename(name):
     
 def main():
     os.startfile(r"C:\Program Files (x86)\Tencent\WeMeet\wemeetapp.exe")
-    time.sleep(10)
-    locate_res=locate(filename('recover.png'))
-    if type(locate_res)!=bool:#locate!=False
+    locate_res=waitAndLocate('quick_meeting.png')
+    time.sleep(0.5)
+    locate_recover=locate('recover.png')
+    if type(locate_recover)!=bool:#locate!=False
         #exist, recover
         click('recover.png')
     else:
