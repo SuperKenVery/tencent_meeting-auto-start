@@ -45,13 +45,10 @@ def main():
         click('recover.png')
     else:
         click('quick_meeting.png')
-    click('open_camera.png')
     click('share_screen.png')
     click('share_sound.png')
     click('confirm_sharing.png')
     click('caption_bar.png',np.array([66,0]))
-    click('talking.png')
-    click('hide.png')
 
 if __name__=='__main__':
     main()
