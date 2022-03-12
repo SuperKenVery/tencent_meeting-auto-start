@@ -45,6 +45,8 @@ def main():
         click('recover.png')
     else:
         click('quick_meeting.png')
+    waitAndLocate('share_screen.png')
+    time.sleep(0.5)
     click('share_screen.png')
     click('share_sound.png')
     click('confirm_sharing.png')
